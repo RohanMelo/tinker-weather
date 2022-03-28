@@ -1,30 +1,37 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div :class="darkMode ? 'dark' : ''">
+    <nav class="flex py-2 px-2 bg-white dark:bg-gray-700">
+      <router-link to="/"
+        ><img
+          src="@/assets/images/logo_transp.png"
+          alt="tinker weather logo"
+          width="100"
+          class="dark:invert"
+      /></router-link>
+      <button class="" @click="toggleDarkMode()">Toggle Dark Mode</button>
+    </nav>
+    <router-view class="px-2" />
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { storeToRefs } from "pinia";
+import { defineComponent } from "vue";
+import { useGlobal } from "./store/useGlobal";
 
-nav {
-  padding: 30px;
-}
+export default defineComponent({
+  name: "App",
+  setup() {
+    const globalStore = useGlobal();
+    const { darkMode, isLoading } = storeToRefs(globalStore);
+    const { toggleDarkMode } = globalStore;
+    return {
+      darkMode,
+      isLoading,
+      toggleDarkMode,
+    };
+  },
+});
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style scoped></style>
