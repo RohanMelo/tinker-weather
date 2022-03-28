@@ -37,6 +37,7 @@ import { defineComponent, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useWeather } from "@/store/useWeather";
 import BaseInput from "../BaseInput/BaseInput.vue";
+import { getWeatherByGeoCoords } from "@/services/weatherApi";
 
 export default defineComponent({
   setup() {
@@ -44,8 +45,10 @@ export default defineComponent({
     const { lastQuery } = storeToRefs(weatherStore);
     const search = ref("");
 
-    const handleSearch = () => {
-      weatherStore.fetchWeather(search.value);
+    const handleSearch = async () => {
+      // weatherStore.fetchWeather(search.value);
+      const response = await getWeatherByGeoCoords(51.509865, -0.118092);
+      console.log(response);
     };
 
     return { search, lastQuery, handleSearch };

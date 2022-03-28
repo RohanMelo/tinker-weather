@@ -4,7 +4,7 @@ export interface WeatherModel {
   };
 }
 
-export interface DailyWeather {}
+// export interface DailyWeather {}
 
 export interface CoordsModel {
   lat: number;
