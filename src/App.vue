@@ -4,9 +4,7 @@
       class="absolute h-screen w-screen inset-0 z-40 bg-black bg-opacity-50"
       v-if="isLoading"
     >
-      <LoadingSpinner
-        class="absolute top-[9%] left-[10%] sm:top-[20%] sm:left-[30%]"
-      />
+      <LoadingSpinner class="absolute left-0 right-0 top-[20%] mx-auto w-64" />
     </div>
     <NavBar />
     <div class="px-4 bg-white dark:bg-gray-700 w-screen h-screen overflow-auto">
