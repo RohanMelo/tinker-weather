@@ -2,6 +2,7 @@
   <TextWrapper class="font-bold text-xl mb-6">7 day Forecast</TextWrapper>
   <div
     class="flex flex-col min-w-full sm:min-w-0 sm:grid sm:grid-cols-4 sm:gap-x-2 sm:gap-y-6 mb-4 sm:mb-20 mx-4 sm:mx-0"
+    data-testid="forecast-container"
   >
     <div class="mx-2 sm:mx-0" v-for="item in forecast.slice(1)" :key="item.dt">
       <WeatherCard :item="item"></WeatherCard>

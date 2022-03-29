@@ -1262,6 +1262,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@pinia/testing@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@pinia/testing/-/testing-0.0.10.tgz#09567c70ae6688b700f96b4c1b75da963554f1e5"
+  integrity sha512-xr7b9MkEEnHwmGAwC/BRlQ16YaNEugyyez6zULLaqfvmXls/jQ29/khdd4+g9hdXOlKoEfM4RW2WfzBtS52gQw==
+  dependencies:
+    vue-demi "*"
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"

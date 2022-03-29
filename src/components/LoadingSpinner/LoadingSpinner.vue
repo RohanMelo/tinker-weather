@@ -1,5 +1,5 @@
 <template>
-  <div class="z-40">
+  <div class="z-40" data-testid="spinner-container">
     <svg
       class="sun-icon"
       xmlns="http://www.w3.org/2000/svg"

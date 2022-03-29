@@ -2,6 +2,7 @@
   <div
     class="flex flex-col justify-center items-center mb-10 text-textprimary dark:text-white"
     v-if="currentWeatherData && coordData"
+    data-testid="weatherhero-container"
   >
     <TextWrapper :isHeading="true" class="text-[30px] mb-2"
       >{{ coordData?.name }}, {{ coordData?.sys.country }}</TextWrapper
@@ -13,12 +14,15 @@
           {{ currentWeatherData?.current.weather[0].description }}</TextWrapper
         >
         <div class="grid grid-cols-2" v-if="currentWeatherData">
-          <p class="font-semibold">Temp:</p>
-          <p class="">{{ currentWeatherData?.current.temp }} &deg;C</p>
-          <p class="font-semibold">High:</p>
-          <p class="">{{ currentWeatherData?.daily[0].temp.max }} &deg;C</p>
-          <p class="font-semibold">Low:</p>
-          <p class="">{{ currentWeatherData?.daily[0].temp.min }} &deg;C</p>
+          <DataDisplay label="Temp:"
+            >{{ currentWeatherData?.current.temp }} &deg;C</DataDisplay
+          >
+          <DataDisplay label="High:"
+            >{{ currentWeatherData?.daily[0].temp.max }} &deg;C</DataDisplay
+          >
+          <DataDisplay label="Low:"
+            >{{ currentWeatherData?.daily[0].temp.min }} &deg;C</DataDisplay
+          >
         </div>
       </div>
       <div>
@@ -72,22 +76,23 @@
       v-if="extraInfoVisible"
     >
       <div class="grid grid-cols-2 gap-x-4 sm:gap-x-0">
-        <p class="font-semibold">Wind Speed:</p>
-        <p class="">{{ currentWeatherData?.current.wind_speed }} m/s</p>
-        <p class="font-semibold">Humidity:</p>
-        <p class="">{{ currentWeatherData?.current.humidity }} %</p>
-        <p class="font-semibold">Pressure:</p>
-        <p class="">{{ currentWeatherData?.current.pressure }} hPa</p>
+        <DataDisplay label="Wind Speed:"
+          >{{ currentWeatherData?.current.wind_speed }} m/s</DataDisplay
+        >
+        <DataDisplay label="Humidity:"
+          >{{ currentWeatherData?.current.humidity }} %</DataDisplay
+        >
+        <DataDisplay label="Pressure:"
+          >{{ currentWeatherData?.current.pressure }} hPa</DataDisplay
+        >
       </div>
       <div class="grid grid-cols-2 gap-x-4 sm:gap-x-0">
-        <p class="font-semibold">Sunrise:</p>
-        <p class="">
-          {{ formatUnixTime(currentWeatherData?.current.sunrise) }}
-        </p>
-        <p class="font-semibold">Sunset:</p>
-        <p class="">
-          {{ formatUnixTime(currentWeatherData?.current.sunset) }}
-        </p>
+        <DataDisplay label="Sunrise:">{{
+          formatUnixTime(currentWeatherData?.current.sunrise)
+        }}</DataDisplay>
+        <DataDisplay label="Sunset:">{{
+          formatUnixTime(currentWeatherData?.current.sunset)
+        }}</DataDisplay>
       </div>
     </div>
   </div>
@@ -101,6 +106,7 @@ import WeatherList from "../WeatherList/WeatherList.vue";
 import TextWrapper from "../TextWrapper/TextWrapper.vue";
 import { storeToRefs } from "pinia";
 import { formatUnixTime } from "@/utils/formatTime";
+import DataDisplay from "../DataDisplay/DataDisplay.vue";
 
 export default defineComponent({
   setup() {
@@ -119,7 +125,7 @@ export default defineComponent({
       formatUnixTime,
     };
   },
-  components: { WeatherList, TextWrapper },
+  components: { WeatherList, TextWrapper, DataDisplay },
 });
 </script>
 
