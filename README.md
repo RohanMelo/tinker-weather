@@ -1,4 +1,14 @@
 # tinker-weather
+**Live DEMO**: [DEMO](https://tinker-weather.vercel.app/)
+
+### Stack
+- Vue 3
+- TailwindCSS
+- Pinia
+- Typescript
+- Cypress
+- Vue Testing Library
+- Dayjs
 
 ## Project setup
 ```
