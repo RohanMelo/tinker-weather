@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="pt-4">
     <BaseInput
       id="weatherSearch"
       type="search"
       v-model="search"
       :hasIcon="true"
-      placeholder="Search by City"
-      inputStyle="pl-10 pr-2 py-2"
+      placeholder="City name"
+      inputStyle="pl-10 pr-2 py-2 rounded-md border-2 border-solid"
       @onEnterPress="handleSearch"
     >
       <template #icon>
@@ -37,7 +37,6 @@ import { defineComponent, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useWeather } from "@/store/useWeather";
 import BaseInput from "../BaseInput/BaseInput.vue";
-import { getWeatherByGeoCoords } from "@/services/weatherApi";
 
 export default defineComponent({
   setup() {
@@ -46,9 +45,7 @@ export default defineComponent({
     const search = ref("");
 
     const handleSearch = async () => {
-      // weatherStore.fetchWeather(search.value);
-      const response = await getWeatherByGeoCoords(51.509865, -0.118092);
-      console.log(response);
+      weatherStore.fetchWeather(search.value);
     };
 
     return { search, lastQuery, handleSearch };

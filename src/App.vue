@@ -1,16 +1,14 @@
 <template>
-  <div :class="darkMode ? 'dark' : ''">
-    <nav class="flex py-2 px-2 bg-white dark:bg-gray-700">
-      <router-link to="/"
-        ><img
-          src="@/assets/images/logo_transp.png"
-          alt="tinker weather logo"
-          width="100"
-          class="dark:invert"
-      /></router-link>
-      <button class="" @click="toggleDarkMode()">Toggle Dark Mode</button>
-    </nav>
-    <router-view class="px-2" />
+  <div :class="darkMode ? 'dark' : ''" class="relative">
+    <div class="absolute inset-0 z-40 bg-black bg-opacity-50" v-if="isLoading">
+      <LoadingSpinner
+        class="absolute top-[9%] left-[10%] sm:top-[20%] sm:left-[30%]"
+      />
+    </div>
+    <NavBar />
+    <div class="px-4 bg-white dark:bg-gray-700">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -18,19 +16,20 @@
 import { storeToRefs } from "pinia";
 import { defineComponent } from "vue";
 import { useGlobal } from "./store/useGlobal";
+import NavBar from "./components/NavBar/NavBar.vue";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner.vue";
 
 export default defineComponent({
   name: "App",
   setup() {
     const globalStore = useGlobal();
     const { darkMode, isLoading } = storeToRefs(globalStore);
-    const { toggleDarkMode } = globalStore;
     return {
       darkMode,
       isLoading,
-      toggleDarkMode,
     };
   },
+  components: { NavBar, LoadingSpinner },
 });
 </script>
 

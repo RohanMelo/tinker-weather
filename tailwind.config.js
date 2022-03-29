@@ -7,8 +7,8 @@ module.exports = {
         sans: "'Work Sans', sans-serif",
       },
       colors: {
-        brandprimary: "#1B31A8",
-        brandsecondary: "#0079FF",
+        brandprimary: "#fd7c4f",
+
         textprimary: "#1E2A32",
         maingray: "#708797",
         intermediarygray: "#4D6475",
