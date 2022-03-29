@@ -3,7 +3,9 @@ import { useGlobal } from "./useGlobal";
 import { WeatherModel, CoordsModel, DailyWeather } from "@/models/weatherModel";
 
 import { getCoords, getWeatherByGeoCoords } from "@/services/weatherApi";
+
 type ErrorMessage = string | any;
+
 export const useWeather = defineStore("weather", {
   state: () => ({
     lastQuery: "",
@@ -13,6 +15,7 @@ export const useWeather = defineStore("weather", {
     weatherError: "" as ErrorMessage,
     coordData: {} as CoordsModel,
   }),
+
   actions: {
     async fetchWeather(cityName: string) {
       if (this.weatherError) this.weatherError = "";
@@ -25,10 +28,11 @@ export const useWeather = defineStore("weather", {
 
       const globalStore = useGlobal();
       globalStore.setIsLoading(true);
+
       try {
         const coordsResult = await getCoords(this.lastQuery);
         this.coordData = coordsResult;
-        console.log("Coord Data: ", this.coordData);
+
         const [currentDayWeather, pastDaysWeather] =
           await getWeatherByGeoCoords(
             this.coordData.coord.lat,
@@ -38,7 +42,6 @@ export const useWeather = defineStore("weather", {
         this.forecast = currentDayWeather.daily;
         this.pastWeatherData = pastDaysWeather;
       } catch (err) {
-        console.log(err);
         this.weatherError = err;
       } finally {
         globalStore.setIsLoading(false);

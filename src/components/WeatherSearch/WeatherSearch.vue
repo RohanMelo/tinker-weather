@@ -8,12 +8,14 @@
       placeholder="City name"
       inputStyle="pl-10 pr-2 py-2 rounded-md border-2 border-solid"
       @onEnterPress="handleSearch"
+      data-cy="search-input"
     >
       <template #icon>
         <button
           type="button"
           class="p-1 focus:outline-none focus:shadow-outline"
           @click="handleSearch"
+          data-cy="search-button"
         >
           <svg
             fill="none"

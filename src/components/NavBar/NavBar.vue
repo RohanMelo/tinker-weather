@@ -8,6 +8,7 @@
         alt="tinker weather logo"
         width="125"
         class=""
+        id="logo"
     /></router-link>
     <button
       class="flex items-center justify-center text-[10px]"

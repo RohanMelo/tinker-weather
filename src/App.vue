@@ -1,12 +1,15 @@
 <template>
-  <div :class="darkMode ? 'dark' : ''" class="relative">
-    <div class="absolute inset-0 z-40 bg-black bg-opacity-50" v-if="isLoading">
+  <div :class="darkMode ? 'dark' : ''" class="relative" data-cy="main-view">
+    <div
+      class="absolute h-screen w-screen inset-0 z-40 bg-black bg-opacity-50"
+      v-if="isLoading"
+    >
       <LoadingSpinner
         class="absolute top-[9%] left-[10%] sm:top-[20%] sm:left-[30%]"
       />
     </div>
     <NavBar />
-    <div class="px-4 bg-white dark:bg-gray-700">
+    <div class="px-4 bg-white dark:bg-gray-700 w-screen h-screen overflow-auto">
       <router-view />
     </div>
   </div>

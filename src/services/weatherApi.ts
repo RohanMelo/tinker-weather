@@ -6,6 +6,7 @@ const axiosInstance = axios.create({
   baseURL: "https://api.openweathermap.org/data/2.5",
 });
 
+// Api Key is still exposed on the Frontend. A way to hide this would be to run the request on a backend server.
 const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
 
 export type CoordsResponse = CoordsModel;
@@ -18,7 +19,6 @@ export async function getCoords(cityName: string): Promise<CoordsResponse> {
     );
     return data;
   } catch (error: any) {
-    console.error(error);
     return error;
   }
 }
@@ -52,7 +52,6 @@ export async function getWeatherByGeoCoords(
 
     return [currentDayWeather, pastDaysWeather];
   } catch (error: any) {
-    console.error(error);
     return error;
   }
 }

@@ -6,7 +6,15 @@
         {{ weatherError }}
       </p>
 
-      <WeatherHeroData v-if="currentWeatherData && coordData && piniaLoaded" />
+      <WeatherHeroData
+        v-if="
+          currentWeatherData &&
+          coordData &&
+          piniaLoaded &&
+          forecast &&
+          pastWeatherData
+        "
+      />
     </div>
   </div>
 </template>
@@ -20,15 +28,19 @@ import { useGlobal } from "@/store/useGlobal";
 
 import WeatherHeroData from "@/components/WeatherHeroData/WeatherHeroData.vue";
 
-// import { useMouse } from "@vueuse/core";
-
 export default defineComponent({
   name: "WeatherView",
   setup() {
     const weatherStore = useWeather();
     const globalStore = useGlobal();
-    const { weatherError, lastQuery, currentWeatherData, coordData } =
-      storeToRefs(weatherStore);
+    const {
+      weatherError,
+      lastQuery,
+      currentWeatherData,
+      coordData,
+      forecast,
+      pastWeatherData,
+    } = storeToRefs(weatherStore);
     const { isLoading } = storeToRefs(globalStore);
     const piniaLoaded = ref(false);
 
@@ -37,6 +49,7 @@ export default defineComponent({
         piniaLoaded.value = true;
       }
     });
+
     return {
       weatherError,
       lastQuery,
@@ -44,6 +57,8 @@ export default defineComponent({
       currentWeatherData,
       coordData,
       piniaLoaded,
+      forecast,
+      pastWeatherData,
     };
   },
   components: { WeatherSearch, WeatherHeroData },

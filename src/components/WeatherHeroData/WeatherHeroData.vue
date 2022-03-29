@@ -5,40 +5,44 @@
     data-testid="weatherhero-container"
   >
     <TextWrapper :isHeading="true" class="text-[30px] mb-2"
-      >{{ coordData?.name }}, {{ coordData?.sys.country }}</TextWrapper
+      >{{ coordData.name }}, {{ coordData.sys.country }}</TextWrapper
     >
 
     <div class="grid grid-cols-2 gap-x-4">
       <div>
-        <TextWrapper class="capitalize text-lg">
-          {{ currentWeatherData?.current.weather[0].description }}</TextWrapper
+        <TextWrapper
+          class="capitalize text-lg"
+          v-if="currentWeatherData.current.weather[0]"
         >
-        <div class="grid grid-cols-2" v-if="currentWeatherData">
+          {{ currentWeatherData.current.weather[0].description }}</TextWrapper
+        >
+        <div class="grid grid-cols-2">
           <DataDisplay label="Temp:"
-            >{{ currentWeatherData?.current.temp }} &deg;C</DataDisplay
+            >{{ currentWeatherData.current.temp }} &deg;C</DataDisplay
           >
           <DataDisplay label="High:"
-            >{{ currentWeatherData?.daily[0].temp.max }} &deg;C</DataDisplay
+            >{{ currentWeatherData.daily[0].temp.max }} &deg;C</DataDisplay
           >
           <DataDisplay label="Low:"
-            >{{ currentWeatherData?.daily[0].temp.min }} &deg;C</DataDisplay
+            >{{ currentWeatherData.daily[0].temp.min }} &deg;C</DataDisplay
           >
         </div>
       </div>
-      <div>
+      <div v-if="currentWeatherData.current.weather[0]">
         <img
-          :src="`http://openweathermap.org/img/wn/${currentWeatherData?.current.weather[0].icon}@2x.png`"
+          :src="`http://openweathermap.org/img/wn/${currentWeatherData.current.weather[0].icon}@2x.png`"
           alt="weather icon"
         />
       </div>
     </div>
 
     <button
-      class="flex justify-center items-center my-2 font-bold text-brandprimary"
+      class="flex justify-center items-center my-2 font-bold text-brandprimary outline-none"
       @click="extraInfoVisible = !extraInfoVisible"
+      data-cy="additional-button"
     >
       Additional Info
-      <div class="ml-2" v-if="extraInfoVisible">
+      <div class="ml-2 text-brandprimary" v-if="extraInfoVisible">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4"
